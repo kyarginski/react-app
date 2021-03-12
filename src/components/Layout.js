@@ -16,7 +16,7 @@ function Layout({title = "no Title", descr = "without Description", urlBg, color
                       }
                       <span className={s.separator}/>
                   </div>
-                  <div className={s.desc.full}>
+                  <div className={[s.desc, s.full].join(' ')}>
                       {
                           {descr} && <p>{descr}</p>
                       }
