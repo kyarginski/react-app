@@ -3,10 +3,9 @@ import s from './pockemoncard.module.css'
 import { useState } from 'react'
 
 const PokemonCard = ({name, img, id, type, values}) => {
-    var [isActive, setActive] = useState(false)
+    let [isActive, setActive] = useState(false);
     const handleClick = () => {
-        isActive = !isActive
-        setActive(isActive)
+        setActive(!isActive)
     }
 
     return (

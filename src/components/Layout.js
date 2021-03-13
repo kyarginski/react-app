@@ -1,7 +1,7 @@
 import '../App.css';
 import s from './layout.module.css'
 
-function Layout({title = "no Title", descr, urlBg, colorBg, children}) {
+function Layout({title = "no Title", urlBg, colorBg, children}) {
     const newStyle = {
         backgroundImage: `url("${urlBg}")`,
         background: `${colorBg}`,
@@ -18,9 +18,6 @@ function Layout({title = "no Title", descr, urlBg, colorBg, children}) {
                     </div>
                     <div className={`${s.desc} ${s.full}`}>
                         {children}
-                        {
-                            {descr} && <p>{descr}</p>
-                        }
                     </div>
                 </article>
             </div>
