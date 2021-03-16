@@ -1,8 +1,7 @@
 import s from './style.module.css'
 
 const GamePage = ({onChangePage}) => {
-    const handleClickButton = (page) => {
-        console.log('GamePage')
+    const handleClickButton = () => {
         onChangePage && onChangePage('app')
     }
     return (

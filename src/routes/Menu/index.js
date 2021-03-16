@@ -1,14 +1,15 @@
 import s from './menu.module.css'
 import classNames from 'classnames'
-import {useState} from "react";
 
-function Menu() {
-    let [isActive, setActive] = useState(false);
+function Menu({isActive, onClickMenuButton}) {
+
     const handleClick = () => {
-        setActive(!isActive)
+        isActive = !isActive
+        onClickMenuButton && onClickMenuButton()
     }
+    const clazz = classNames(s.menuContainer, {[s.active]: isActive, [s.deactive]: !isActive})
     return (
-        <div className={classNames(s.menuContainer, {[s.active]: isActive})}  onClick={handleClick}>
+        <div className={clazz}  onClick={handleClick}>
             <div className={s.overlay}/>
             <div className={s.menuContainer}>
                 <ul>

@@ -1,5 +1,5 @@
 import '../../App.css';
-import MenuHeader from "../../components/MenuHeader";
+import MenuHeader from "../MenuHeader";
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import Footer from '../../components/Footer';
@@ -14,7 +14,6 @@ import cardData from '../../data/cards-data.json';
 
 const HomePage = ({onChangePage}) => {
     const handleClickButton = (page) => {
-        console.log('HomePage')
         onChangePage && onChangePage(page)
     }
     return (

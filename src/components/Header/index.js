@@ -3,7 +3,6 @@ import s from './header.module.css'
 
 function Header({title = "no Title", descr = "without Description", onClickButton}) {
     const handleClick = () => {
-        console.log('this is Header')
         onClickButton && onClickButton('game')
     }
     return (

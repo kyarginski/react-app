@@ -1,21 +1,26 @@
 import s from './navbar.module.css'
 import classNames from 'classnames'
-import {useState} from "react";
 
-function NavBar() {
-    let [isActive, setActive] = useState(false);
-    const handleClick = () => {
-        setActive(!isActive)
+function NavBar({isActive, onClickMenuButton}) {
+
+    if (isActive === undefined) {
+        isActive = true
     }
+
+    const handleClick = () => {
+        isActive = !isActive
+        onClickMenuButton && onClickMenuButton()
+    }
+
     return (
         <nav className={s.root} onClick={handleClick}>
             <div className={s.navWrapper}>
                 <p className={s.brand}>
                     LOGO
                 </p>
-                <a className={classNames(s.menuButton, {[s.active]: isActive})}>
+                <p className={classNames(s.menuButton, {[s.active]: isActive})}>
                     <span/>
-                </a>
+                </p>
             </div>
         </nav>
     );
