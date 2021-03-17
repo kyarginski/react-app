@@ -1,7 +1,7 @@
 import {useHistory} from 'react-router-dom';
 import s from './style.module.css'
 
-const GamePage = () => {
+const NotFoundPage = () => {
     const history = useHistory();
 
     const handleClickButton = () => {
@@ -11,7 +11,7 @@ const GamePage = () => {
         <div className={s.root}>
             <div className={s.forest}/>
             <div className={s.container}>
-                <p>This is the Game Page.</p>
+                <p>This is Not Found 404 Page.</p>
                 <br/>
                 <button className={s.button} onClick={handleClickButton}>
                     Return to Home
@@ -21,4 +21,4 @@ const GamePage = () => {
     );
 }
 
-export default GamePage;
+export default NotFoundPage;

@@ -1,5 +1,6 @@
 import s from './menu.module.css'
 import classNames from 'classnames'
+import {Link} from 'react-router-dom'
 
 function Menu({isOpen, onClickMenuButton}) {
 
@@ -11,19 +12,19 @@ function Menu({isOpen, onClickMenuButton}) {
     const menuItems = [
         {
             title: 'HOME',
-            to: '#welcome',
+            to: 'home',
         },
         {
             title: 'GAME',
-            to: '#game',
+            to: 'game',
         },
         {
             title: 'ABOUT',
-            to: '#about',
+            to: 'about',
         },
         {
             title: 'CONTACT',
-            to: '#contact',
+            to: 'contact',
         },
     ]
 
@@ -35,9 +36,9 @@ function Menu({isOpen, onClickMenuButton}) {
                     {
                         menuItems.map(({title, to}, index) => (
                             <li key={index}>
-                                <a href={to}>
+                                <Link to={to}>
                                     {title}
-                                </a>
+                                </Link>
                             </li>
                         ))
                     }

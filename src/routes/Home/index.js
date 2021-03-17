@@ -1,8 +1,6 @@
 import '../../App.css';
-import MenuHeader from "../MenuHeader";
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import Footer from '../../components/Footer';
 import PokemonCard from '../../components/PokemonCard';
 
 // import bgImage1 from './images/bg1.jpg'
@@ -12,16 +10,12 @@ import bgImage3 from '../../images/bg3.jpg'
 import cardData from '../../data/cards-data.json';
 
 
-const HomePage = ({onChangePage}) => {
-    const handleClickButton = (page) => {
-        onChangePage && onChangePage(page)
-    }
+const HomePage = () => {
+
     return (
         <>
-            <MenuHeader />
             <Header title="Super Puper Poke"
                     descr="This is not only the game"
-                    onClickButton={handleClickButton}
             >
             </Header>
             <Layout title="Rule" urlBg={bgImage2}>
@@ -52,7 +46,6 @@ const HomePage = ({onChangePage}) => {
             <Layout title="Description of the game" urlBg={bgImage3}>
                 <p>Coming soon...</p>
             </Layout>
-            <Footer/>
         </>
     );
 }
