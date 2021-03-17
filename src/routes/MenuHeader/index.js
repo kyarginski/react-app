@@ -6,11 +6,7 @@ import {useState} from "react";
 const MenuHeader = () => {
     let [isActive, setActive] = useState(false);
     const handleClick = () => {
-        if (isActive === undefined) {
-            setActive(true)
-        } else {
-            setActive(prev => !prev)
-        }
+        setActive(prev => !prev)
     }
 
     return (

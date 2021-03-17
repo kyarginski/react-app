@@ -4,7 +4,6 @@ import classNames from 'classnames'
 function Menu({isActive, onClickMenuButton}) {
 
     const handleClick = () => {
-        isActive = !isActive
         onClickMenuButton && onClickMenuButton()
     }
     const clazz = classNames(s.menuContainer, {[s.active]: isActive, [s.deactive]: !isActive})

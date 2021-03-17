@@ -3,12 +3,7 @@ import classNames from 'classnames'
 
 function NavBar({isActive, onClickMenuButton}) {
 
-    if (isActive === undefined) {
-        isActive = true
-    }
-
     const handleClick = () => {
-        isActive = !isActive
         onClickMenuButton && onClickMenuButton()
     }
 
