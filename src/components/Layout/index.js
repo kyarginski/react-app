@@ -1,5 +1,6 @@
-import '../App.css';
+import '../../App.css';
 import s from './layout.module.css'
+import classNames from "classnames";
 
 function Layout({title = "no Title", urlBg, colorBg, children}) {
     const newStyle = {
@@ -16,7 +17,7 @@ function Layout({title = "no Title", urlBg, colorBg, children}) {
                         }
                         <span className={s.separator}/>
                     </div>
-                    <div className={`${s.desc} ${s.full}`}>
+                    <div className={classNames(s.desc, s.full)} >
                         {children}
                     </div>
                 </article>
