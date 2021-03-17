@@ -1,18 +1,19 @@
-import Menu from '../Menu';
-import NavBar from '../NavBar';
 import {useState} from "react";
 
+import Menu from '../Menu';
+import NavBar from '../NavBar';
 
 const MenuHeader = () => {
-    let [isActive, setActive] = useState(false);
+    let [isOpen, setOpen] = useState(null);
+
     const handleClick = () => {
-        setActive(prev => !prev)
+        setOpen(prevState => !prevState)
     }
 
     return (
         <>
-            <Menu isActive={isActive} onClickMenuButton={handleClick}/>
-            <NavBar isActive={isActive} onClickMenuButton={handleClick}/>
+            <Menu isOpen={isOpen} onClickMenuButton={handleClick}/>
+            <NavBar isOpen={isOpen} onClickMenuButton={handleClick}/>
         </>
     );
 }
