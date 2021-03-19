@@ -1,14 +1,15 @@
 import {useHistory} from 'react-router-dom';
 import s from './style.module.css'
 import PokemonCard from "../../components/PokemonCard";
+import database from "../../service/firebase";
 
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
-import cardData from "../../data/cards-data.json";
+// import cardData from "../../data/cards-data.json";
 
 
 const GamePage = () => {
-    const [cardData2, setData] = useState(cardData);
+    const [cardData, setData] = useState({});
 
     const history = useHistory();
 
@@ -16,14 +17,30 @@ const GamePage = () => {
         history.push('/')
     }
 
+    useEffect(() => {
+        database.ref('pokemons').once('value', (snapshot) => {
+            setData(snapshot.val());
+        });
+
+    }, [])
+
     const handleChangeVisible = (id, visible) => {
-        setData(prevState => prevState.filter(item => {
-            if (item.id === id){
-                item.active = visible;
-            }
-            return true;
-        }))
-        console.log("cardData2 = ", cardData2)
+        console.log("handleChangeVisible id = ", id, " visible = ", visible)
+
+        setData(prevState => {
+            return Object.entries(prevState).reduce((acc, item) => {
+                const pokemon = {...item[1]};
+                if (pokemon.id === id) {
+                    pokemon.active = visible;
+                }
+
+                acc[item[0]] = pokemon;
+
+                return acc;
+            }, {});
+        });
+
+        console.log("cardData = ", cardData)
     }
 
     return (
@@ -32,9 +49,14 @@ const GamePage = () => {
             <div className={s.container}>
                 <div className={s.flex}>
                     {
-                        cardData.map(item => <PokemonCard key={item.id} name={item.name} img={item.img} id={item.id}
-                                                          type={item.type} values={item.values}
-                                                          isActive={item.active} onClick={handleChangeVisible}/>)
+
+                        Object.entries(cardData).map(([key, {name, img, id, type, values, active}]) => (
+                            <PokemonCard key={id} name={name} img={img} id={id}
+                                         type={type} values={values}
+                                         isActive={active} onClick={handleChangeVisible}
+                            />
+                        ))
+
                     }
                 </div>
 

@@ -6,6 +6,9 @@ const PokemonCard = ({name, img, id, type, values, isActive, onClick}) => {
 
     const handleClick = () => {
         isActive = !isActive
+
+        console.log("PokemonCard id = ", id, " isActive = ", isActive)
+
         onClick && onClick(id, isActive)
     }
     return (
