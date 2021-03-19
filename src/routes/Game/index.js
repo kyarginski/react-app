@@ -13,18 +13,25 @@ const GamePage = () => {
 
     const history = useHistory();
 
-    const handleClickButton = () => {
+    const handleClickHomeButton = () => {
         history.push('/')
     }
+
+    const handleClickNewCardButton = () => {
+        //history.push('/')
+    }
+
 
     useEffect(() => {
         database.ref('pokemons').once('value', (snapshot) => {
             setData(snapshot.val());
+
+            console.log("cardData from useEffect ", snapshot.val())
         });
 
     }, [])
 
-    const handleChangeVisible = (id, visible) => {
+    const handleChangeVisible = (id, keyId, visible) => {
         console.log("handleChangeVisible id = ", id, " visible = ", visible)
 
         setData(prevState => {
@@ -32,6 +39,9 @@ const GamePage = () => {
                 const pokemon = {...item[1]};
                 if (pokemon.id === id) {
                     pokemon.active = visible;
+                    pokemon.keyId = keyId
+
+                    database.ref('pokemons/'+ pokemon.keyId).set(pokemon);
                 }
 
                 acc[item[0]] = pokemon;
@@ -47,11 +57,18 @@ const GamePage = () => {
         <div className={s.root}>
             <div className={s.forest}/>
             <div className={s.container}>
+
+                <div className={s.flex}>
+                    <button className={s.button} onClick={handleClickNewCardButton}>
+                        Add New Card
+                    </button>
+                </div>
+
                 <div className={s.flex}>
                     {
 
                         Object.entries(cardData).map(([key, {name, img, id, type, values, active}]) => (
-                            <PokemonCard key={id} name={name} img={img} id={id}
+                            <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
                                          isActive={active} onClick={handleChangeVisible}
                             />
@@ -61,7 +78,7 @@ const GamePage = () => {
                 </div>
 
                 <div className={s.flex}>
-                    <button className={s.button} onClick={handleClickButton}>
+                    <button className={s.button} onClick={handleClickHomeButton}>
                         Return to Home
                     </button>
                 </div>
