@@ -1,27 +1,18 @@
 import '../../App.css';
-import MenuHeader from "../MenuHeader";
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
-import Footer from '../../components/Footer';
-import PokemonCard from '../../components/PokemonCard';
 
 // import bgImage1 from './images/bg1.jpg'
 import bgImage2 from '../../images/bg2.jpg'
 import bgImage3 from '../../images/bg3.jpg'
 
-import cardData from '../../data/cards-data.json';
 
+const HomePage = () => {
 
-const HomePage = ({onChangePage}) => {
-    const handleClickButton = (page) => {
-        onChangePage && onChangePage(page)
-    }
     return (
         <>
-            <MenuHeader />
             <Header title="Super Puper Poke"
                     descr="This is not only the game"
-                    onClickButton={handleClickButton}
             >
             </Header>
             <Layout title="Rule" urlBg={bgImage2}>
@@ -36,23 +27,9 @@ const HomePage = ({onChangePage}) => {
                     card will be captured and turned into the opponent's color. If the player's rank is higher, the
                     opponent's card will be captured and changed into the player's color instead. </p>
             </Layout>
-            <Layout
-                id="cards"
-                title="Cards"
-                colorBg="DeepSkyBlue">
-
-                <div className="flex">
-                    {
-                        cardData.map(item => <PokemonCard key={item.id} name={item.name} img={item.img} id={item.id}
-                                                          type={item.type} values={item.values}/>)
-                    }
-                </div>
-
-            </Layout>
             <Layout title="Description of the game" urlBg={bgImage3}>
                 <p>Coming soon...</p>
             </Layout>
-            <Footer/>
         </>
     );
 }

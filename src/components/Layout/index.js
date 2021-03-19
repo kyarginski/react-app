@@ -2,7 +2,7 @@ import '../../App.css';
 import s from './layout.module.css'
 import classNames from "classnames";
 
-function Layout({title = "no Title", urlBg, colorBg, children}) {
+function Layout({title, urlBg, colorBg, children}) {
     const newStyle = {
         backgroundImage: `url("${urlBg}")`,
         background: `${colorBg}`,
