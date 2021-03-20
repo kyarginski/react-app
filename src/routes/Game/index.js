@@ -16,24 +16,50 @@ const GamePage = () => {
     const handleClickHomeButton = () => {
         history.push('/')
     }
-
-    const handleClickNewCardButton = () => {
-        //history.push('/')
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 
+    function refreshPage() {
+        database.ref('pokemons').on('value', (snapshot) => {
+            setData(snapshot.val());
+
+            console.log("cardData from refreshPage ", snapshot.val())
+        });
+    }
+
+    function addNewCard() {
+
+        // копируем случайный элемент
+        const index = getRandomInt(0, Object.keys(cardData).length);
+        const key = Object.keys(cardData)[index];
+        const newPokemon = Object.assign({}, cardData[key]);
+
+        if (newPokemon != null) {
+            const newKey = database.ref().child('pokemons').push().key;
+            newPokemon.keyId = newKey;
+            newPokemon.id = getRandomInt(100, 1000);  // рандом от 100 до 1000
+            newPokemon.active = false;
+            newPokemon.name = 'newName' + newPokemon.id.toString()
+
+            database.ref('pokemons/' + newKey).set(newPokemon);
+            console.log("newPokemon", newPokemon)
+        }
+    }
+
+    const handleClickNewCardButton = () => {
+        addNewCard();
+        refreshPage();
+    }
 
     useEffect(() => {
         database.ref('pokemons').once('value', (snapshot) => {
             setData(snapshot.val());
-
-            console.log("cardData from useEffect ", snapshot.val())
         });
 
     }, [])
 
     const handleChangeVisible = (id, keyId, visible) => {
-        console.log("handleChangeVisible id = ", id, " visible = ", visible)
-
         setData(prevState => {
             return Object.entries(prevState).reduce((acc, item) => {
                 const pokemon = {...item[1]};
@@ -41,7 +67,7 @@ const GamePage = () => {
                     pokemon.active = visible;
                     pokemon.keyId = keyId
 
-                    database.ref('pokemons/'+ pokemon.keyId).set(pokemon);
+                    database.ref('pokemons/' + pokemon.keyId).set(pokemon);
                 }
 
                 acc[item[0]] = pokemon;
@@ -49,20 +75,12 @@ const GamePage = () => {
                 return acc;
             }, {});
         });
-
-        console.log("cardData = ", cardData)
     }
 
     return (
         <div className={s.root}>
             <div className={s.forest}/>
             <div className={s.container}>
-
-                <div className={s.flex}>
-                    <button className={s.button} onClick={handleClickNewCardButton}>
-                        Add New Card
-                    </button>
-                </div>
 
                 <div className={s.flex}>
                     {
@@ -82,6 +100,13 @@ const GamePage = () => {
                         Return to Home
                     </button>
                 </div>
+                <br/>
+                <div className={s.flex}>
+                    <button className={s.button} onClick={handleClickNewCardButton}>
+                        Add New Card
+                    </button>
+                </div>
+
             </div>
         </div>
     );
