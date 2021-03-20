@@ -79,8 +79,13 @@ const GamePage = () => {
 
     return (
         <div className={s.root}>
-            <div className={s.forest}/>
             <div className={s.container}>
+
+                <div className={s.flex}>
+                    <button className={s.button} onClick={handleClickNewCardButton}>
+                        Add New Card
+                    </button>
+                </div>
 
                 <div className={s.flex}>
                     {
@@ -95,15 +100,10 @@ const GamePage = () => {
                     }
                 </div>
 
+                <br/>
                 <div className={s.flex}>
                     <button className={s.button} onClick={handleClickHomeButton}>
                         Return to Home
-                    </button>
-                </div>
-                <br/>
-                <div className={s.flex}>
-                    <button className={s.button} onClick={handleClickNewCardButton}>
-                        Add New Card
                     </button>
                 </div>
 

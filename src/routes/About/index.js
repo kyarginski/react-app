@@ -9,7 +9,6 @@ const AboutPage = () => {
     }
     return (
         <div className={s.root}>
-            <div className={s.forest}/>
             <div className={s.container}>
                 <p>This is the About Page.</p>
                 <br/>
