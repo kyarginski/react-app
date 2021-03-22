@@ -20,36 +20,33 @@ const GamePage = () => {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 
-    function refreshPage() {
-        database.ref('pokemons').on('value', (snapshot) => {
-            setData(snapshot.val());
-
-            console.log("cardData from refreshPage ", snapshot.val())
-        });
-    }
-
     function addNewCard() {
 
         // копируем случайный элемент
         const index = getRandomInt(0, Object.keys(cardData).length);
-        const key = Object.keys(cardData)[index];
-        const newPokemon = Object.assign({}, cardData[key]);
+        const newPokemon = Object.assign({}, Object.values(cardData)[index]);
 
         if (newPokemon != null) {
-            const newKey = database.ref().child('pokemons').push().key;
+            let newKey = database.ref().child('pokemons').push().key;
             newPokemon.keyId = newKey;
             newPokemon.id = getRandomInt(100, 1000);  // рандом от 100 до 1000
             newPokemon.active = false;
             newPokemon.name = 'newName' + newPokemon.id.toString()
 
-            database.ref('pokemons/' + newKey).set(newPokemon);
-            console.log("newPokemon", newPokemon)
+            database.ref('pokemons/' + newKey).set(newPokemon, (error) => {
+                if (error) {
+                    // The write failed...
+                    console.error('error adding new card', error)
+                } else {
+                    // Data saved successfully!
+                    setData(prevState=>({...prevState, [newKey]:newPokemon}))
+                }
+            });
         }
     }
 
     const handleClickNewCardButton = () => {
         addNewCard();
-        refreshPage();
     }
 
     useEffect(() => {
@@ -67,7 +64,14 @@ const GamePage = () => {
                     pokemon.active = visible;
                     pokemon.keyId = keyId
 
-                    database.ref('pokemons/' + pokemon.keyId).set(pokemon);
+                    database.ref('pokemons/' + pokemon.keyId).set(pokemon, (error) => {
+                        if (error) {
+                            // The write failed...
+                            console.error('error save data', error)
+                        } else {
+                            // Data saved successfully!
+                        }
+                    });
                 }
 
                 acc[item[0]] = pokemon;
@@ -89,7 +93,6 @@ const GamePage = () => {
 
                 <div className={s.flex}>
                     {
-
                         Object.entries(cardData).map(([key, {name, img, id, type, values, active}]) => (
                             <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
