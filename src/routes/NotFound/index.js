@@ -9,7 +9,6 @@ const NotFoundPage = () => {
     }
     return (
         <div className={s.root}>
-            <div className={s.forest}/>
             <div className={s.container}>
                 <p>This is Not Found 404 Page.</p>
                 <br/>
