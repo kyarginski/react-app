@@ -63,6 +63,7 @@ const StartPage = () => {
             setPokemons(cardData);
         });
         return () => firebase.closePokemonsSoket();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleSelectCard = (id, keyId, visible, selected) => {
@@ -113,8 +114,7 @@ const StartPage = () => {
                             id,
                             type,
                             values,
-                            selected,
-                            active = true
+                            selected
                         }]) => (
                             <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
