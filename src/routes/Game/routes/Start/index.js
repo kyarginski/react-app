@@ -6,8 +6,7 @@ import {useState, useEffect, useContext} from "react";
 import {FireBaseContext} from "../../../../context/firebaseContext";
 import {PokemonContext} from "../../../../context/pokemonContext";
 
-
-const GamePage = () => {
+const StartPage = () => {
     const firebase = useContext(FireBaseContext)
     const selectedCards = useContext(PokemonContext)
     const [cardData, setPokemons] = useState({});
@@ -21,7 +20,7 @@ const GamePage = () => {
     function getExistIndex(arr, value) {
         let index = -1
         for (let i = 0; i < arr.length; i++) {
-            if (arr[i].keyId === value.keyId){
+            if (arr[i].keyId === value.keyId) {
                 index = i;
             }
         }
@@ -41,7 +40,7 @@ const GamePage = () => {
     function setSelectedPokemon(data) {
         console.log('data.selected', data.selected)
 
-        if (data.selected === true){
+        if (data.selected === true) {
             console.log('selected true')
 
             let index = getExistIndex(selectedCards.pokemons, data)
@@ -63,32 +62,37 @@ const GamePage = () => {
         firebase.getPokemonsSoket((cardData) => {
             setPokemons(cardData);
         });
+        return () => firebase.closePokemonsSoket();
     }, [])
 
     const handleSelectCard = (id, keyId, visible, selected) => {
-        setPokemons(prevState => {
-            return Object.entries(prevState).reduce((acc, item) => {
-                let pokemon = {...item[1]};
-                if (pokemon.id === id) {
-                    pokemon.active = visible;
-                    pokemon.keyId = keyId
+        // не больше 5 покемонов или отмена выбора карты
+        if (selectedCards.pokemons.length < 5 || !selected) {
 
-                    // TODO отключим запись в БД
-                    // firebase.postPokemon(item[0], pokemon);
+            setPokemons(prevState => {
+                return Object.entries(prevState).reduce((acc, item) => {
+                    let pokemon = {...item[1]};
+                    if (pokemon.id === id) {
+                        pokemon.active = visible;
+                        pokemon.keyId = keyId
 
-                    console.log('selected получили', selected)
+                        // TODO отключим запись в БД
+                        // firebase.postPokemon(item[0], pokemon);
 
-                    pokemon.selected = selected
+                        console.log('selected получили', selected)
 
-                    setSelectedPokemon(pokemon)
+                        pokemon.selected = selected
 
-                }
+                        setSelectedPokemon(pokemon)
 
-                acc[item[0]] = pokemon;
+                    }
 
-                return acc;
-            }, {});
-        });
+                    acc[item[0]] = pokemon;
+
+                    return acc;
+                }, {});
+            });
+        }
     }
 
     return (
@@ -97,13 +101,21 @@ const GamePage = () => {
 
                 <div className={s.button}>
                     <button onClick={handleClickNewGameButton}>
-                        Start New Game
+                        Begin New Game
                     </button>
                 </div>
 
                 <div className={s.flex}>
                     {
-                        Object.entries(cardData).map(([key, {name, img, id, type, values, selected, active=true}]) => (
+                        Object.entries(cardData).map(([key, {
+                            name,
+                            img,
+                            id,
+                            type,
+                            values,
+                            selected,
+                            active = true
+                        }]) => (
                             <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
                                          isActive={true} isSelected={selected} onClick={handleSelectCard}
@@ -125,4 +137,4 @@ const GamePage = () => {
     );
 }
 
-export default GamePage;
+export default StartPage;

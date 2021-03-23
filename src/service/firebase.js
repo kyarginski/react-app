@@ -25,6 +25,10 @@ class Firebase {
         })
     }
 
+    closePokemonsSoket = () => {
+        this.database.ref('pokemons').off();
+    }
+
     getPokemonsOnce = async () => {
         return await this.database.ref('pokemons').once('value').then(snap => snap.val());
     }
