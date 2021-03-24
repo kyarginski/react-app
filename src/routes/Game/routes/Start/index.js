@@ -32,14 +32,10 @@ const StartPage = () => {
         if (index > -1) {
             arr.splice(index, 1);
         }
-        console.log('index', index)
-        console.log('arr', arr)
         return arr;
     }
 
     function setSelectedPokemon(data) {
-        console.log('data.selected', data.selected)
-
         if (data.selected === true) {
             console.log('selected true')
 
@@ -51,7 +47,6 @@ const StartPage = () => {
             console.log('selected false')
             selectedCards.pokemons = removeItemFromSelected(selectedCards.pokemons, data)
         }
-        console.log('selectedCards.pokemons', selectedCards.pokemons)
     }
 
     const handleClickNewGameButton = () => {
@@ -105,7 +100,7 @@ const StartPage = () => {
                         Begin New Game
                     </button>
                 </div>
-
+                <br/>
                 <div className={s.flex}>
                     {
                         Object.entries(cardData).map(([key, {
@@ -118,6 +113,7 @@ const StartPage = () => {
                         }]) => (
                             <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
+                                         className={s.card}
                                          isActive={true} isSelected={selected} onClick={handleSelectCard}
                             />
                         ))

@@ -32,7 +32,7 @@
 
 .card {
   max-height: 14.8vw;
-  margin-top: -6vw;
+  margin-top: -6vw !important;
 }
 
 .card:first-child {
@@ -40,7 +40,7 @@
 }
 .playerOne {
   position: absolute;
-  top: 4.3vw;
+  top: 10.0vw;
   left: 5vw;
   width: 250px;
   height: 50.3vw;
