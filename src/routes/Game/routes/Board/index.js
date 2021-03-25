@@ -4,6 +4,7 @@ import {useContext, useEffect, useState} from "react";
 import {PokemonContext} from "../../../../context/pokemonContext";
 import PokemonCard from "../../../../components/PokemonCard";
 import PlayerBoard from "./component/PlayerBoard";
+import Result from "../../../../components/Result";
 
 const counterWin = (board, player1, player2) => {
   let player1Count = player1.length;
@@ -22,9 +23,9 @@ const counterWin = (board, player1, player2) => {
 }
 
 const BoardPage = () => {
-    //let { pokemons, pokemons2 } = useContext(PokemonContext)
     const pokemonsContext = useContext(PokemonContext)
     const [board, setBoard] = useState([]);
+    const [resultType, setResultType] = useState(null);
     const [player1, setPlayer1] = useState(() => {
         return Object.values(pokemonsContext.pokemons).map(item => ({
             ...item,
@@ -101,17 +102,21 @@ const BoardPage = () => {
     useEffect( () => {
         if (steps === 9) {
             const [count1, count2] = counterWin(board, player1, player2);
+            let type
 
             if (count1 > count2) {
-                alert('YOU WON')
+                //alert('YOU WON')
+                type = 'win'
             } else if (count2 > count1) {
-                alert('YOU LOSE')
+                //alert('YOU LOSE')
+                type = 'lose'
             } else {
-                alert('DRAW GAME')
+                //alert('DRAW GAME')
+                type = 'draw'
             }
 
+            setResultType(type)
 
-            history.push('/game/finish');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [steps]);
@@ -125,6 +130,12 @@ const BoardPage = () => {
                     onClickCard={(card) => setChoiceCard(card)}
                 />
             </div>
+
+            { (steps === 9) &&
+                <Result
+                    type={resultType}
+                />
+            }
 
             <div className={s.board}>
                 {
