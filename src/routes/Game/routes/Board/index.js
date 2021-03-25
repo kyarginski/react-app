@@ -22,10 +22,11 @@ const counterWin = (board, player1, player2) => {
 }
 
 const BoardPage = () => {
-    let { pokemons, pokemons2 } = useContext(PokemonContext)
+    //let { pokemons, pokemons2 } = useContext(PokemonContext)
+    const pokemonsContext = useContext(PokemonContext)
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState(() => {
-        return Object.values(pokemons).map(item => ({
+        return Object.values(pokemonsContext.pokemons).map(item => ({
             ...item,
             possession: 'blue',
         }))
@@ -44,6 +45,13 @@ const BoardPage = () => {
 
         const player2Response = await fetch('https://reactmarathon-api.netlify.app/api/create-player');
         const player2Request = await player2Response.json();
+
+
+        pokemonsContext.onSetPlayer2Pokemons(player2Request.data);
+
+        console.log('pokemonsContext.pokemons2', pokemonsContext.pokemons2)
+
+
         setPlayer2(() => {
             return player2Request.data.map(item => ({
                 ...item,
@@ -54,7 +62,7 @@ const BoardPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    if (Object.keys(pokemons).length === 0){
+    if (Object.keys(pokemonsContext.pokemons).length === 0){
         history.replace('/game');
     }
 
@@ -102,7 +110,7 @@ const BoardPage = () => {
                 alert('DRAW GAME')
             }
 
-            pokemons2 = {...player2}
+
             history.push('/game/finish');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

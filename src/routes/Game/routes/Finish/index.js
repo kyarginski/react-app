@@ -2,34 +2,20 @@ import {useHistory} from 'react-router-dom';
 import s from './style.module.css'
 import PokemonCard from "../../../../components/PokemonCard";
 import {PokemonContext} from "../../../../context/pokemonContext";
-import {useContext, useEffect, useState} from "react";
+import {useContext} from "react";
 
 const FinishPage = () => {
     const history = useHistory();
 
-    const { pokemons, pokemons2 } = useContext(PokemonContext)
-    const [player1, setPlayer1] = useState(() => {
-        return Object.values(pokemons).map(item => ({
-            ...item,
-            possession: 'blue',
-        }))
-    });
-    const [player2, setPlayer2] = useState(() => {
-        return Object.values(pokemons2).map(item => ({
-            ...item,
-            possession: 'red',
-        }))
-    });
+    const pokemonsContext = useContext(PokemonContext)
+
     const handleClickHomeButton = () => {
         history.push('/')
     }
 
-    useEffect(() => {
-        setPlayer1(pokemons);
-        setPlayer2(pokemons2);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    if (Object.keys(pokemonsContext.pokemons).length === 0){
+        history.replace('/home');
+    }
 
     return (
         <div className={s.root}>
@@ -37,7 +23,7 @@ const FinishPage = () => {
 
                 <div className={s.flex}>
                     {
-                        Object.entries(player1).map(([key, {
+                        Object.entries(pokemonsContext.pokemons).map(([key, {
                             name,
                             img,
                             id,
@@ -65,7 +51,7 @@ const FinishPage = () => {
 
                 <div className={s.flex}>
                     {
-                        Object.entries(player2).map(([key, {
+                        Object.entries(pokemonsContext.pokemons2).map(([key, {
                             name,
                             img,
                             id,
