@@ -22,10 +22,10 @@ const counterWin = (board, player1, player2) => {
 }
 
 const BoardPage = () => {
-    const selectedCards = useContext(PokemonContext)
+    const { pokemons } = useContext(PokemonContext)
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState(() => {
-        return selectedCards.pokemons.map(item => ({
+        return Object.values(pokemons).map(item => ({
             ...item,
             possession: 'blue',
         }))
@@ -55,10 +55,7 @@ const BoardPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-    console.log('selectedCards len', selectedCards.pokemons.length);
-
-    if (selectedCards.pokemons.length === 0){
+    if (Object.keys(pokemons).length === 0){
         history.replace('/game');
     }
 
