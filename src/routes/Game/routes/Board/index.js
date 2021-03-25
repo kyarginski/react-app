@@ -22,7 +22,7 @@ const counterWin = (board, player1, player2) => {
 }
 
 const BoardPage = () => {
-    const { pokemons } = useContext(PokemonContext)
+    let { pokemons, pokemons2 } = useContext(PokemonContext)
     const [board, setBoard] = useState([]);
     const [player1, setPlayer1] = useState(() => {
         return Object.values(pokemons).map(item => ({
@@ -35,7 +35,6 @@ const BoardPage = () => {
     const [steps, setSteps] = useState(0);
 
     const history = useHistory();
-    console.log('player2', player2);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
@@ -60,9 +59,6 @@ const BoardPage = () => {
     }
 
     const handleClickBoardPlate = async (position) => {
-        console.log('position', position)
-        console.log('choiceCard', choiceCard)
-
         if (choiceCard) {
             const params = {
                 position,
@@ -105,6 +101,9 @@ const BoardPage = () => {
             } else {
                 alert('DRAW GAME')
             }
+
+            pokemons2 = {...player2}
+            history.push('/game/finish');
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [steps]);

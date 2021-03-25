@@ -54,14 +54,11 @@
 }
 
 .container {
-  width: fit-content;
-  position: absolute;
-  right: 0;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  animation: text-fade-in 1000ms 800ms forwards;
+  min-height: calc(100vh - 100px);
+  padding: 96px 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @keyframes text-fade-in {
@@ -99,4 +96,18 @@
 .button:hover,
 .button:active {
   color: #f300b4;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 250px !important;
+  height: 380px !important;
+  margin: 8px;
+  cursor: pointer;
 }

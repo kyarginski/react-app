@@ -28,6 +28,7 @@ const GamePage = () => {
     return (
         <PokemonContext.Provider value={{
             pokemons: selectedPokemons,
+            pokemons2: [],
             onSelectPokemons: handleSelectedPokemons
         }}>
 
