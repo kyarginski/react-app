@@ -8,45 +8,13 @@ import {PokemonContext} from "../../../../context/pokemonContext";
 
 const StartPage = () => {
     const firebase = useContext(FireBaseContext)
-    const selectedCards = useContext(PokemonContext)
+    const pokemonsContext = useContext(PokemonContext)
     const [cardData, setPokemons] = useState({});
 
     const history = useHistory();
 
     const handleClickHomeButton = () => {
         history.push('/')
-    }
-
-    function getExistIndex(arr, value) {
-        let index = -1
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].keyId === value.keyId) {
-                index = i;
-            }
-        }
-        return index;
-    }
-
-    function removeItemFromSelected(arr, value) {
-        let index = getExistIndex(arr, value)
-        if (index > -1) {
-            arr.splice(index, 1);
-        }
-        return arr;
-    }
-
-    function setSelectedPokemon(data) {
-        if (data.selected === true) {
-            console.log('selected true')
-
-            let index = getExistIndex(selectedCards.pokemons, data)
-            if (index === -1) {
-                selectedCards.pokemons.push(data)
-            }
-        } else {
-            console.log('selected false')
-            selectedCards.pokemons = removeItemFromSelected(selectedCards.pokemons, data)
-        }
     }
 
     const handleClickNewGameButton = () => {
@@ -61,34 +29,18 @@ const StartPage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const handleSelectCard = (id, keyId, visible, selected) => {
-        // не больше 5 покемонов или отмена выбора карты
-        if (selectedCards.pokemons.length < 5 || !selected) {
+    const handleActiveSelected = (key) => {
+        const pokemon = {...cardData[key]}
+        pokemonsContext.onSelectPokemons(key, pokemon);
+        setPokemons(prevState => ({
+            ...prevState,
+            [key]: {
+                ...prevState[key],
+                selected: !prevState[key].selected,
+            }
 
-            setPokemons(prevState => {
-                return Object.entries(prevState).reduce((acc, item) => {
-                    let pokemon = {...item[1]};
-                    if (pokemon.id === id) {
-                        pokemon.active = visible;
-                        pokemon.keyId = keyId
+        }))
 
-                        // TODO отключим запись в БД
-                        // firebase.postPokemon(item[0], pokemon);
-
-                        console.log('selected получили', selected)
-
-                        pokemon.selected = selected
-
-                        setSelectedPokemon(pokemon)
-
-                    }
-
-                    acc[item[0]] = pokemon;
-
-                    return acc;
-                }, {});
-            });
-        }
     }
 
     return (
@@ -96,7 +48,10 @@ const StartPage = () => {
             <div className={s.container}>
 
                 <div className={s.button}>
-                    <button onClick={handleClickNewGameButton}>
+                    <button
+                        onClick={handleClickNewGameButton}
+                        disabled={Object.keys(pokemonsContext.pokemons).length < 5}
+                    >
                         Begin New Game
                     </button>
                 </div>
@@ -114,7 +69,12 @@ const StartPage = () => {
                             <PokemonCard key={key} keyId={key} name={name} img={img} id={id}
                                          type={type} values={values}
                                          className={s.card}
-                                         isActive={true} isSelected={selected} onClick={handleSelectCard}
+                                         isActive={true} isSelected={selected}
+                                         onClick={() => {
+                                             if (Object.keys(pokemonsContext.pokemons).length < 5 || selected) {
+                                                 handleActiveSelected(key)
+                                             }
+                                         }}
                             />
                         ))
 

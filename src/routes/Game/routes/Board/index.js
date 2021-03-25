@@ -4,13 +4,13 @@ import {PokemonContext} from "../../../../context/pokemonContext";
 import PokemonCard from "../../../../components/PokemonCard";
 
 const BoardPage = () => {
-    const selectedCards = useContext(PokemonContext)
+    const { pokemons } = useContext(PokemonContext)
 
     return (
         <div className={s.root}>
 						<div className={s.playerOne}>
                             {
-                                selectedCards.pokemons.map(item =>
+                                Object.values(pokemons).map(item =>
                                     <PokemonCard key={item.keyId}
                                                  name={item.name}
                                                  img={item.img}
