@@ -56,6 +56,9 @@ const StartPage = () => {
                     </button>
                 </div>
                 <br/>
+                <div>
+                    <p>Select 5 cards</p>
+                </div>
                 <div className={s.flex}>
                     {
                         Object.entries(cardData).map(([key, {

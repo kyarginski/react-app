@@ -27,9 +27,24 @@ const GamePage = () => {
         })
     }
 
+    const handleSelectedPokemonsPlayer2 = (key, pokemon) => {
+        setPlayer2Pokemons(prevState => {
+            if (prevState[key]){
+                const copyState = {...prevState};
+                delete copyState[key];
+
+                return copyState;
+            }
+
+            return {
+                ...prevState,
+                [key]: pokemon,
+            }
+        })
+    }
+
     const handleOnSetPlayer2Pokemons = (data) => {
         setPlayer2Pokemons(data)
-        console.log('setPlayer2Pokemons', data)
     }
 
     return (
@@ -37,6 +52,7 @@ const GamePage = () => {
             pokemons: selectedPokemons,
             pokemons2: player2Pokemons,
             onSelectPokemons: handleSelectedPokemons,
+            onSelectPokemonsPlayer2: handleSelectedPokemonsPlayer2,
             onSetPlayer2Pokemons: handleOnSetPlayer2Pokemons
         }}>
 
