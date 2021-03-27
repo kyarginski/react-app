@@ -5,6 +5,7 @@ import {PokemonContext} from "../../../../context/pokemonContext";
 import PokemonCard from "../../../../components/PokemonCard";
 import PlayerBoard from "./component/PlayerBoard";
 import Result from "../../../../components/Result";
+import ArrowChoice from "../../../../components/ArrowChoice";
 
 const counterWin = (board, player1, player2) => {
   let player1Count = player1.length;
@@ -135,6 +136,12 @@ const BoardPage = () => {
                 <Result
                     type={resultType}
                 />
+            }
+
+            { (steps !== 9) &&
+            <ArrowChoice
+                side={(steps % 2 === 0)? 1: 2}
+            />
             }
 
             <div className={s.board}>
