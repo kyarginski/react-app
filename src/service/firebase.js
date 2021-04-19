@@ -1,5 +1,7 @@
 import firebase from "firebase/app";
-import 'firebase/database'
+import 'firebase/database';
+import "firebase/auth";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyAbJoFmhO0phtz8c_34TGG1bCCYtVbLsO8",
@@ -12,6 +14,17 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+firebase.auth().signInAnonymously()
+    .then(() => {
+        console.log('Signed in...')
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log(errorCode, errorMessage)
+    });
 
 class Firebase {
     constructor() {
