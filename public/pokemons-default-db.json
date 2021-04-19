@@ -167,6 +167,269 @@
         "top" : "A"
       },
       "weight" : 3336
+    },
+    "-MWjm_cEYrT8yyPfZAzU" : {
+      "base_experience" : 165,
+      "height" : 25,
+      "id" : 874,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/874.png",
+      "name" : "stonjourner",
+      "stats" : {
+        "attack" : 125,
+        "defense" : 135,
+        "hp" : 100,
+        "special-attack" : 20,
+        "special-defense" : 20,
+        "speed" : 70
+      },
+      "type" : "rock",
+      "values" : {
+        "bottom" : 9,
+        "left" : "A",
+        "right" : "A",
+        "top" : "A"
+      },
+      "weight" : 5200
+    },
+    "-MWjmso03K_TE9HLauAX" : {
+      "abilities" : [ "lightning-rod", "rock-head", "reckless" ],
+      "base_experience" : 170,
+      "height" : 19,
+      "id" : 112,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/112.png",
+      "name" : "rhydon",
+      "stats" : {
+        "attack" : 130,
+        "defense" : 120,
+        "hp" : 105,
+        "special-attack" : 45,
+        "special-defense" : 45,
+        "speed" : 40
+      },
+      "type" : "ground",
+      "values" : {
+        "bottom" : 3,
+        "left" : "A",
+        "right" : "A",
+        "top" : 5
+      },
+      "weight" : 1200
+    },
+    "-MWjpCZ_9VuP95513Kz1" : {
+      "abilities" : [ "magic-bounce" ],
+      "base_experience" : 198,
+      "height" : 12,
+      "id" : 10057,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10057.png",
+      "name" : "absol-mega",
+      "stats" : {
+        "attack" : 150,
+        "defense" : 60,
+        "hp" : 65,
+        "special-attack" : 115,
+        "special-defense" : 60,
+        "speed" : 115
+      },
+      "type" : "dark",
+      "values" : {
+        "bottom" : 6,
+        "left" : 4,
+        "right" : 3,
+        "top" : 6
+      },
+      "weight" : 490
+    },
+    "-MWmMH8d8xkNe7uV5_Xm" : {
+      "abilities" : [ "limber", "reckless", "unburden" ],
+      "base_experience" : 159,
+      "height" : 15,
+      "id" : 106,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/106.png",
+      "name" : "hitmonlee",
+      "stats" : {
+        "attack" : 120,
+        "defense" : 53,
+        "hp" : 50,
+        "special-attack" : 35,
+        "special-defense" : 110,
+        "speed" : 87
+      },
+      "type" : "fighting",
+      "values" : {
+        "bottom" : 6,
+        "left" : 7,
+        "right" : 4,
+        "top" : 8
+      },
+      "weight" : 498
+    },
+    "-MWmyqnoxUbND9hnLeuu" : {
+      "abilities" : [ "intimidate", "anger-point", "sheer-force" ],
+      "base_experience" : 172,
+      "height" : 14,
+      "id" : 128,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/128.png",
+      "name" : "tauros",
+      "stats" : {
+        "attack" : 100,
+        "defense" : 95,
+        "hp" : 75,
+        "special-attack" : 40,
+        "special-defense" : 70,
+        "speed" : 110
+      },
+      "type" : "normal",
+      "values" : {
+        "bottom" : "A",
+        "left" : "A",
+        "right" : 1,
+        "top" : 2
+      },
+      "weight" : 884
+    },
+    "-MWnN_rZyfpXlTfIezpd" : {
+      "abilities" : [ "oblivious", "tinted-lens", "prankster" ],
+      "base_experience" : 151,
+      "height" : 6,
+      "id" : 314,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/314.png",
+      "name" : "illumise",
+      "stats" : {
+        "attack" : 47,
+        "defense" : 75,
+        "hp" : 65,
+        "special-attack" : 73,
+        "special-defense" : 85,
+        "speed" : 85
+      },
+      "type" : "bug",
+      "values" : {
+        "bottom" : 4,
+        "left" : 3,
+        "right" : 8,
+        "top" : 7
+      },
+      "weight" : 177
+    },
+    "-MWorX73HMGlu-wvP9ls" : {
+      "abilities" : [ "sturdy", "soundproof" ],
+      "base_experience" : 70,
+      "height" : 5,
+      "id" : 410,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/410.png",
+      "name" : "shieldon",
+      "stats" : {
+        "attack" : 42,
+        "defense" : 118,
+        "hp" : 30,
+        "special-attack" : 42,
+        "special-defense" : 88,
+        "speed" : 30
+      },
+      "type" : "rock",
+      "values" : {
+        "bottom" : 8,
+        "left" : 7,
+        "right" : 6,
+        "top" : 6
+      },
+      "weight" : 570
+    },
+    "-MWouEbOmcACwR4j2AWe" : {
+      "abilities" : [ "rough-skin", "speed-boost" ],
+      "base_experience" : 161,
+      "height" : 18,
+      "id" : 319,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/319.png",
+      "name" : "sharpedo",
+      "stats" : {
+        "attack" : 120,
+        "defense" : 40,
+        "hp" : 70,
+        "special-attack" : 95,
+        "special-defense" : 40,
+        "speed" : 95
+      },
+      "type" : "water",
+      "values" : {
+        "bottom" : 6,
+        "left" : "A",
+        "right" : 2,
+        "top" : 5
+      },
+      "weight" : 888
+    },
+    "-MWovMUDYyMi5aWRHaqD" : {
+      "abilities" : [ "pressure", "inner-focus" ],
+      "base_experience" : 261,
+      "height" : 21,
+      "id" : 244,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/244.png",
+      "name" : "entei",
+      "stats" : {
+        "attack" : 115,
+        "defense" : 85,
+        "hp" : 115,
+        "special-attack" : 90,
+        "special-defense" : 75,
+        "speed" : 100
+      },
+      "type" : "fire",
+      "values" : {
+        "bottom" : 5,
+        "left" : "A",
+        "right" : 4,
+        "top" : "A"
+      },
+      "weight" : 1980
+    },
+    "-MYGv1UYXMpThQP5AfoT" : {
+      "abilities" : [ "sheer-force", "zen-mode" ],
+      "base_experience" : 189,
+      "height" : 13,
+      "id" : 10017,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/10017.png",
+      "name" : "darmanitan-zen",
+      "stats" : {
+        "attack" : 30,
+        "defense" : 105,
+        "hp" : 105,
+        "special-attack" : 140,
+        "special-defense" : 105,
+        "speed" : 55
+      },
+      "type" : "fire",
+      "values" : {
+        "bottom" : "A",
+        "left" : 9,
+        "right" : 4,
+        "top" : "A"
+      },
+      "weight" : 929
+    },
+    "-MYeQfGKm80HJZlGvlYh" : {
+      "abilities" : [ "levitate", "heatproof", "heavy-metal" ],
+      "base_experience" : 175,
+      "height" : 13,
+      "id" : 437,
+      "img" : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/437.png",
+      "name" : "bronzong",
+      "stats" : {
+        "attack" : 89,
+        "defense" : 116,
+        "hp" : 67,
+        "special-attack" : 79,
+        "special-defense" : 116,
+        "speed" : 33
+      },
+      "type" : "steel",
+      "values" : {
+        "bottom" : "A",
+        "left" : 9,
+        "right" : 3,
+        "top" : "A"
+      },
+      "weight" : 1870
     }
   }
 }
